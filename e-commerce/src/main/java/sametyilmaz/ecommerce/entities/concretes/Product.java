@@ -7,9 +7,11 @@ public class Product {
     private double price;
     private String description;
 
+    //    no-args constructor
     public Product() {
     }
 
+    //    constructor
     public Product(int id, String name, int quantity, double price, String description) {
         this.id = id;
         this.name = name;
@@ -18,6 +20,7 @@ public class Product {
         this.description = description;
     }
 
+    //    getter setter
     public int getId() {
         return id;
     }
