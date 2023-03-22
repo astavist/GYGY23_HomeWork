@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GYGYOdev.iml" filepath="$PROJECT_DIR$/.idea/GYGYOdev.iml" />
-      <module fileurl="file://$PROJECT_DIR$/e-commerce/e-commerce.iml" filepath="$PROJECT_DIR$/e-commerce/e-commerce.iml" />
-      <module fileurl="file://$PROJECT_DIR$/homeWorks/gameSale/gameSale.iml" filepath="$PROJECT_DIR$/homeWorks/gameSale/gameSale.iml" />
-      <module fileurl="file://$PROJECT_DIR$/odevInjection/odevInjection.iml" filepath="$PROJECT_DIR$/odevInjection/odevInjection.iml" />
     </modules>
   </component>
 </project>
