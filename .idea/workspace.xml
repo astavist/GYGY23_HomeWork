@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="test1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/api/controllers/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/api/controllers/ProductsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/abstracts/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/abstracts/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/concretes/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/concretes/ProductManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/entities/concretes/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/entities/concretes/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/repository/abstracts/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/repository/abstracts/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/repository/concretes/InMemoryProductReporitory.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/repository/concretes/InMemoryProductReporitory.java" afterDir="false" />
-    </list>
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="düzenleme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679448884757</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="düzenleme">
+      <created>1679449460896</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679449460896</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="asd" />
     <MESSAGE value="test1" />
-    <option name="LAST_COMMIT_MESSAGE" value="test1" />
+    <MESSAGE value="düzenleme" />
+    <option name="LAST_COMMIT_MESSAGE" value="düzenleme" />
   </component>
 </project>
