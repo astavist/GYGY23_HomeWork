@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="düzenleme" />
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="düzenleme">
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/api/controllers/BrandsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/business/abstracts/BrandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/business/concrete/BrandManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/entities/concrete/Brand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/repository/abstracts/BrandRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/repository/concrete/InMemoryBrandRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rent-a-car/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rent-a-car/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,10 +50,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "C:/Users/SAMET/Desktop/GYGYOdev/homeWorks"
+    "last_opened_file_path": "C:/Users/SAMET/Desktop/GYGY23-Ders/onSekizMart_Ders/rent-a-car",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.RentACarApplication">
     <configuration name="ECommerceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sametyilmaz.ecommerce.ECommerceApplication" />
       <module name="e-commerce" />
@@ -50,8 +68,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RentACarApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sametyilmaz.rentacar.RentACarApplication" />
+      <module name="rent-a-car" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sametyilmaz.rentacar.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RentACarApplication" />
         <item itemvalue="Application.ECommerceApplication" />
       </list>
     </recent_temporary>
@@ -100,7 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679449460896</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="düzenleme">
+      <created>1679494856735</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679494856735</updated>
+    </task>
+    <task id="LOCAL-00007" summary="düzenleme">
+      <created>1679494953657</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679494953657</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,5 +165,9 @@
     <MESSAGE value="test1" />
     <MESSAGE value="düzenleme" />
     <option name="LAST_COMMIT_MESSAGE" value="düzenleme" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
