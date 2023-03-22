@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/odevInjection/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/EmailNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/EmployeManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Engineer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Executive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/GSMNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/odevInjection/src/main/java/org/example/SMSNotification.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/odevInjection" />
+  </component>
+  <component name="ProjectId" id="2N9CMj8LPfKBVftuJWnZnomR8aA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SAMET/Desktop/GYGYOdev&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="ECommerceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sametyilmaz.ecommerce.ECommerceApplication" />
+      <module name="e-commerce" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sametyilmaz.ecommerce.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ECommerceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="" />
+      <created>1679066864290</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679066864290</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
