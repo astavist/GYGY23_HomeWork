@@ -4,6 +4,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/e-commerce/pom.xml" />
+        <option value="$PROJECT_DIR$/odevInjection/pom.xml" />
+        <option value="$PROJECT_DIR$/homeWorks/gameSale/pom.xml" />
       </list>
     </option>
   </component>
