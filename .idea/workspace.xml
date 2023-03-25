@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="düzenleme">
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/api/controllers/BrandsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/business/abstracts/BrandService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/business/concrete/BrandManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/entities/concrete/Brand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/repository/abstracts/BrandRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rent-a-car/src/main/java/sametyilmaz/rentacar/repository/concrete/InMemoryBrandRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rent-a-car/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rent-a-car/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="rent-a-car" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679494953657</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="rent-a-car">
+      <created>1679497121101</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679497121101</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,7 +162,8 @@
     <MESSAGE value="asd" />
     <MESSAGE value="test1" />
     <MESSAGE value="düzenleme" />
-    <option name="LAST_COMMIT_MESSAGE" value="düzenleme" />
+    <MESSAGE value="rent-a-car" />
+    <option name="LAST_COMMIT_MESSAGE" value="rent-a-car" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

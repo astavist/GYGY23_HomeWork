@@ -1,55 +1,45 @@
 package sametyilmaz.rentacar.business.concrete;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import sametyilmaz.rentacar.business.abstracts.BrandService;
-import sametyilmaz.rentacar.entities.concrete.Brand;
-import sametyilmaz.rentacar.repository.abstracts.BrandRepository;
+import sametyilmaz.rentacar.entities.Brand;
+import sametyilmaz.rentacar.repository.BrandRepository;
 
 import java.util.List;
 @Service
+@AllArgsConstructor
 public class BrandManager implements BrandService {
-    BrandRepository repository;
-
-    @Autowired
-    public BrandManager(BrandRepository repository) {
-        this.repository=repository;
-    }
+    private final BrandRepository repository;
 
     @Override
     public List<Brand> getAll() {
-        if (repository.getAll().size() == 0) {
-            throw new RuntimeException("Kayıtlı marka yok");
-        }
-        return repository.getAll();
-    }
-
-    @Override
-    public Brand add(Brand brand) {
-        checkIfBrandValid(brand);
-        return repository.add(brand);
+        return repository.findAll();
     }
 
     @Override
     public Brand getById(int id) {
-        return repository.getById(id);
+        checkIfBrandExists(id);
+        return repository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public Brand add(Brand brand) {
+        return repository.save(brand);
     }
 
     @Override
     public Brand update(int id, Brand brand) {
-        return repository.update(id,brand);
+        brand.setId(id);
+        return repository.save(brand);
     }
 
     @Override
     public void delete(int id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
-    public void checkIfBrandValid(Brand brand) {
-        for (Brand brand1:repository.getAll()) {
-            if (brand1.getId() == brand.getId()) {
-                throw new RuntimeException("Eklemeye çalıştığınız marka mevcut.");
-            }
-        }
+    public void checkIfBrandExists(int id) {
+        if (!repository.existsById(id)) throw new RuntimeException("Marka bulunamadı");
     }
 }

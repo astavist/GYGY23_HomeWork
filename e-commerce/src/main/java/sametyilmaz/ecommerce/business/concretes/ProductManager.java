@@ -1,49 +1,47 @@
 package sametyilmaz.ecommerce.business.concretes;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
-import sametyilmaz.ecommerce.entities.concretes.Product;
-import sametyilmaz.ecommerce.repository.concretes.InMemoryProductReporitory;
+import sametyilmaz.ecommerce.entities.Product;
+import sametyilmaz.ecommerce.repository.ProductRepository;
 
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProductManager implements ProductService {
 
-    private final InMemoryProductReporitory repository;
-
-//    dependency injection
-
-    public ProductManager(InMemoryProductReporitory repository) {
-        this.repository = repository;
-    }
+    private final ProductRepository repository;
 
     @Override
     public List<Product> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 
     @Override
     public Product getById(int id) {
-        return repository.getById(id);
+        return repository.findById(id).orElseThrow();
     }
 
     @Override
     public Product add(Product product) {
-        return repository.add(product);
+        validateProduct(product);
+        return repository.save(product);
     }
 
     @Override
     public Product update(int id, Product product) {
         validateProduct(product);
-        return repository.update(id, product);
+        product.setId(id);
+        return repository.save(product);
     }
 
     //    business kuralları
     @Override
     public void delete(int id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
     private void validateProduct(Product product) {

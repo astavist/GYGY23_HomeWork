@@ -1,6 +1,6 @@
 package sametyilmaz.ecommerce.business.abstracts;
 
-import sametyilmaz.ecommerce.entities.concretes.Product;
+import sametyilmaz.ecommerce.entities.Product;
 
 import java.util.List;
 
