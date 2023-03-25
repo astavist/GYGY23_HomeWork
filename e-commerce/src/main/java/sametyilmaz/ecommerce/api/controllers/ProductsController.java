@@ -1,5 +1,6 @@
 package sametyilmaz.ecommerce.api.controllers;
 
+import lombok.AllArgsConstructor;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
 import sametyilmaz.ecommerce.entities.Product;
 import org.springframework.http.HttpStatus;
@@ -9,12 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
+@AllArgsConstructor
 public class ProductsController {
     private final ProductService service;
-
-    public ProductsController(ProductService productService) {
-        this.service = productService;
-    }
 
 //    mapping
 
