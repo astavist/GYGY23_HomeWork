@@ -8,20 +8,24 @@ import lombok.Setter;
 
 import java.util.List;
 
-//lombok
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "brand") //burada isimlendirmeler snake_case
-public class Brand {
+@Getter
+@Setter
+@Table(name = "models")
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-//    @JsonBackReference
-    @OneToMany(mappedBy = "brand")
-    private List<Model> models;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+//    @JsonManagedReference
+    private Brand brand; //brandId
 
+
+    @OneToMany(mappedBy = "model")
+//    @JsonBackReference
+    private List<Car> cars;
 }
