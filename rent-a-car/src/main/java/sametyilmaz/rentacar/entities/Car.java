@@ -17,11 +17,16 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int modelYear;
+
     private String plate;
+
     private double dailyPrice;
-    @Enumerated
+
+    @Enumerated(EnumType.STRING)
     private State state;
+
     @ManyToOne
     @JoinColumn(name = "model_id")
 //    @JsonManagedReference

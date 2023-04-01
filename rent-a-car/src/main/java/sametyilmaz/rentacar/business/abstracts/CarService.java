@@ -5,14 +5,19 @@ import sametyilmaz.rentacar.business.dto.requests.update.UpdateCarRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateCarResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetAllCarsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetCarResponse;
+import sametyilmaz.rentacar.business.dto.responses.maintenance.ReturnMaintenanceResponse;
+import sametyilmaz.rentacar.business.dto.responses.maintenance.SendMaintenanceResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateCarResponse;
 
 import java.util.List;
 
 public interface CarService {
+    List<GetAllCarsResponse> getAllByState(Boolean filter);
     List<GetAllCarsResponse> getAll();
     GetCarResponse getById(int id);
     CreateCarResponse add(CreateCarRequest request);
     UpdateCarResponse update(int id, UpdateCarRequest request);
+    SendMaintenanceResponse sendMaintenance(int id);
+    ReturnMaintenanceResponse returnMaintenance(int id);
     void delete(int id);
 }
