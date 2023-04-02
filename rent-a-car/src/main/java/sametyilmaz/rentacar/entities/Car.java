@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sametyilmaz.rentacar.entities.enums.State;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +34,6 @@ public class Car {
 //    @JsonManagedReference
     private Model model; //modelId
 
-
+    @OneToMany(mappedBy = "car")
+    private List<Maintenance> maintenances;
 }

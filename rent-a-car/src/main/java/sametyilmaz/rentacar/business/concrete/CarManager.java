@@ -9,8 +9,6 @@ import sametyilmaz.rentacar.business.dto.requests.update.UpdateCarRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateCarResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetAllCarsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetCarResponse;
-import sametyilmaz.rentacar.business.dto.responses.maintenance.ReturnMaintenanceResponse;
-import sametyilmaz.rentacar.business.dto.responses.maintenance.SendMaintenanceResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateCarResponse;
 import sametyilmaz.rentacar.entities.Car;
 import sametyilmaz.rentacar.repository.CarRepository;
@@ -71,26 +69,7 @@ public class CarManager implements CarService {
         return mapper.map(car,UpdateCarResponse.class);
     }
 
-    @Override
-    public  SendMaintenanceResponse sendMaintenance(int id) {
-        checkIfCarExists(id);
-        Car car = carRepository.findById(id).orElseThrow();
-        validateMaintenance(car);
-        car.setState(MAINTANCE);
-        carRepository.save(car);
-        SendMaintenanceResponse response = mapper.map(car,SendMaintenanceResponse.class);
-        return response;
-    }
 
-    @Override
-    public ReturnMaintenanceResponse returnMaintenance(int id) {
-        checkIfCarExists(id);
-        Car car = carRepository.findById(id).orElseThrow();
-        car.setState(AVAILABLE);
-        carRepository.save(car);
-        ReturnMaintenanceResponse response = mapper.map(car,ReturnMaintenanceResponse.class);
-        return response;
-    }
 
 
     @Override
@@ -99,20 +78,7 @@ public class CarManager implements CarService {
         carRepository.deleteById(id);
 
     }
-
-    public void validateMaintenance(Car car) {
-        checkIfCarRentedforMaintenance(car);
-        checkIfCarAvailableforMaintenance(car);
-    }
-
-    public void checkIfCarAvailableforMaintenance(Car car) {
-        if (car.getState().equals(MAINTANCE)) throw new RuntimeException("Araç zaten bakımda");
-    }
-
-    public void checkIfCarRentedforMaintenance(Car car) {
-        if (car.getState().equals(RENTED)) throw new RuntimeException("Araç şuan kirada");
-    }
-
+    @Override
     public void checkIfCarExists(int id) {
         if (!carRepository.existsById(id)) throw new RuntimeException("Marka bulunamadı");
     }

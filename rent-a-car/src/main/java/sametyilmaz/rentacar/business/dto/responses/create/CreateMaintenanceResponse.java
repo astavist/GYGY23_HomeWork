@@ -1,16 +1,18 @@
-package sametyilmaz.rentacar.business.dto.responses.maintenance;
+package sametyilmaz.rentacar.business.dto.responses.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sametyilmaz.rentacar.entities.enums.State;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class SendMaintenanceResponse {
+public class CreateMaintenanceResponse {
+    private int id;
+    private Date sendDate;
     private int carId;
-    private State state;
 }
