@@ -7,7 +7,7 @@ import sametyilmaz.rentacar.business.abstracts.ModelService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateModelRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateModelRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateModelResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllModelResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.GetAllModelsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetModelResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateModelResponse;
 
@@ -17,28 +17,26 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/models")
 public class ModelController {
-    private final ModelService modelService;
-
+    private ModelService service;
     @GetMapping
-    public List<GetAllModelResponse> getAll() {
-        return modelService.getAll();
+    public List<GetAllModelsResponse> getAll(){
+        return service.getAll();
     }
-    @GetMapping("{id}")
-    public GetModelResponse getById(@PathVariable int id) {
-        return modelService.getById(id);
+    @GetMapping("/{id}")
+    public GetModelResponse getById(@PathVariable int id){
+        return service.getById(id);
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateModelResponse add(@RequestBody CreateModelRequest request) {
-        return modelService.add(request);
+    public CreateModelResponse add(@RequestBody CreateModelRequest request){
+        return service.add(request);
     }
-    @PutMapping("{id}")
-    public UpdateModelResponse update(@PathVariable int id, @RequestBody UpdateModelRequest request) {
-        return modelService.update(id,request);
+    @PutMapping("/{id}")
+    public UpdateModelResponse update(@PathVariable int id, @RequestBody UpdateModelRequest request){
+        return service.update(id, request);
     }
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable int id) {
-        modelService.delete(id);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id){
+        service.delete(id);
     }
 }

@@ -1,4 +1,4 @@
-package sametyilmaz.rentacar.business.dto.responses.create;
+package sametyilmaz.rentacar.business.dto.responses.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CreateReturnMaintenanceResponse {
+public class UpdateMaintenanceStatusForCarResponse {
     private int id;
     private int carId;
     private Date sendDate;

@@ -7,7 +7,7 @@ import sametyilmaz.rentacar.business.abstracts.ModelService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateModelRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateModelRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateModelResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllModelResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.GetAllModelsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetModelResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateModelResponse;
 import sametyilmaz.rentacar.entities.Model;
@@ -22,9 +22,9 @@ public class ModelManager implements ModelService {
     private ModelMapper mapper;
 
     @Override
-    public List<GetAllModelResponse> getAll() {
-        List<GetAllModelResponse> response = modelRepository.findAll().stream()
-                .map(model -> mapper.map(model,GetAllModelResponse.class)).toList();
+    public List<GetAllModelsResponse> getAll() {
+        List<GetAllModelsResponse> response = modelRepository.findAll().stream()
+                .map(model -> mapper.map(model, GetAllModelsResponse.class)).toList();
         return response;
     }
 

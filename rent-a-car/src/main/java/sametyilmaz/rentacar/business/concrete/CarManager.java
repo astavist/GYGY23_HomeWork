@@ -11,6 +11,7 @@ import sametyilmaz.rentacar.business.dto.responses.get.GetAllCarsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetCarResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateCarResponse;
 import sametyilmaz.rentacar.entities.Car;
+import sametyilmaz.rentacar.entities.enums.State;
 import sametyilmaz.rentacar.repository.CarRepository;
 
 import java.util.List;
@@ -69,7 +70,12 @@ public class CarManager implements CarService {
         return mapper.map(car,UpdateCarResponse.class);
     }
 
-
+    @Override
+    public void carMaintenance(int id, State state) {
+        Car car = carRepository.findById(id).orElseThrow();
+        car.setState(state);
+        carRepository.save(car);
+    }
 
 
     @Override

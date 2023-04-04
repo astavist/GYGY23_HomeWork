@@ -1,5 +1,7 @@
 package sametyilmaz.rentacar.business.dto.requests.create;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ public class CreateCarRequest {
     private int modelYear;
     private String plate;
     private double dailyPrice;
+    @Enumerated(EnumType.STRING)
     private State state;
     private int modelId;
 }

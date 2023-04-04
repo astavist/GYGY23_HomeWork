@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import sametyilmaz.rentacar.business.abstracts.CarService;
 import sametyilmaz.rentacar.business.abstracts.MaintenanceService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateMaintenanceRequest;
-import sametyilmaz.rentacar.business.dto.requests.create.CreateReturnMaintenanceRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateCarRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateMaintenanceRequest;
+import sametyilmaz.rentacar.business.dto.requests.update.UpdateMaintenanceStatusForCarRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateMaintenanceResponse;
-import sametyilmaz.rentacar.business.dto.responses.create.CreateReturnMaintenanceResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllMaintenanceResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.GetAllMaintenancesResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.GetMaintenanceResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateMaintenanceResponse;
+import sametyilmaz.rentacar.business.dto.responses.update.UpdateMaintenanceStatusForCarResponse;
 import sametyilmaz.rentacar.entities.Car;
 import sametyilmaz.rentacar.entities.Maintenance;
 import sametyilmaz.rentacar.repository.MaintenanceRepository;
@@ -27,23 +27,9 @@ import static sametyilmaz.rentacar.entities.enums.State.*;
 @AllArgsConstructor
 public class MaintenanceManager implements MaintenanceService {
 
-    private final MaintenanceRepository maintenanceRepository;
+    private final MaintenanceRepository repository;
     private final ModelMapper mapper;
     private final CarService carService;
-
-
-    @Override
-    public List<GetAllMaintenanceResponse> getAll() {
-        List<Maintenance> maintenances = maintenanceRepository.findAll();
-        List<GetAllMaintenanceResponse> responses = maintenances.stream()
-                .map(maintenance -> mapper.map(maintenance,GetAllMaintenanceResponse.class)).toList();
-        return responses;
-    }
-
-    @Override
-    public GetMaintenanceResponse getById(int id) {
-        return mapper.map(maintenanceRepository.findById(id).orElseThrow(), GetMaintenanceResponse.class);
-    }
 
     @Override
     public CreateMaintenanceResponse add(CreateMaintenanceRequest request) {
@@ -52,47 +38,56 @@ public class MaintenanceManager implements MaintenanceService {
         validateMaintenance(car);
 
         Maintenance maintenance = mapper.map(request,Maintenance.class);
-        maintenance.setId(0);
         Date date = new Date();
+        maintenance.setId(0);
         maintenance.setSendDate(date);
-//        maintenance.setCar(car);
-        Maintenance createdMaintenance = maintenanceRepository.save(maintenance);
+        repository.save(maintenance);
         sendMaintenance(car);
-        CreateMaintenanceResponse response = mapper.map(createdMaintenance,CreateMaintenanceResponse.class);
+        CreateMaintenanceResponse response = mapper.map(maintenance,CreateMaintenanceResponse.class);
         return response;
     }
 
     @Override
     public UpdateMaintenanceResponse update(int id, UpdateMaintenanceRequest request) {
+        checkIfMaintenanceAvailable(id);
         Maintenance maintenance = mapper.map(request,Maintenance.class);
-        maintenance.setId(id);
-        maintenanceRepository.save(maintenance);
-        return mapper.map(maintenanceRepository.save(maintenance),UpdateMaintenanceResponse.class);
+        repository.save(maintenance);
+        UpdateMaintenanceResponse respond = mapper.map(maintenance, UpdateMaintenanceResponse.class);
+        return respond;
     }
 
     @Override
-    public CreateReturnMaintenanceResponse returnMaintenance(int id, CreateReturnMaintenanceRequest request) {
-        Maintenance maintenance = mapper.map(getById(id),Maintenance.class);
-        maintenance.setReturnDate(new Date());
-        update(maintenance.getId(),mapper.map(maintenance,UpdateMaintenanceRequest.class));
-        returnMaintenanceForCar(mapper.map(carService.getById(id),Car.class));
-        return mapper.map(maintenance,CreateReturnMaintenanceResponse.class);
+    public GetMaintenanceResponse getById(int id) {
+        Maintenance maintenance =repository.findById(id).orElseThrow();
+        GetMaintenanceResponse response = mapper.map(maintenance, GetMaintenanceResponse.class);
+        return response;
     }
 
+    @Override
+    public List<GetAllMaintenancesResponse> getAll() {
+        List<Maintenance> maintenances = repository.findAll();
+        List<GetAllMaintenancesResponse> responses = maintenances.stream()
+                .map(maintenance -> mapper.map(maintenance, GetAllMaintenancesResponse.class)).toList();
+        return responses;
+    }
+
+    @Override
+    public UpdateMaintenanceStatusForCarResponse returnFromMaintenance(int id, UpdateMaintenanceStatusForCarRequest request) {
+        Car car = mapper.map(carService.getById(request.getCarId()),Car.class);
+        checkIfAvailableForReturningFromMaintenance(car);
+        Maintenance maintenance = mapper.map(getById(id),Maintenance.class);
+        maintenance.setId(id);
+        Date date = new Date();
+        maintenance.setReturnDate(date);
+        repository.save(maintenance);
+        returnFromMaintenance(car);
+        UpdateMaintenanceStatusForCarResponse response = mapper.map(maintenance,UpdateMaintenanceStatusForCarResponse.class);
+        return response;
+    }
 
     @Override
     public void delete(int id) {
-        maintenanceRepository.deleteById(id);
-    }
-
-    public void sendMaintenance(Car car) {
-        car.setState(MAINTANCE);
-        carService.update(car.getId(),mapper.map(car, UpdateCarRequest.class));
-    }
-
-    public void returnMaintenanceForCar(Car car) {
-        car.setState(AVAILABLE);
-        carService.update(car.getId(),mapper.map(car, UpdateCarRequest.class));
+        repository.deleteById(id);
     }
 
     public void validateMaintenance(Car car) {
@@ -106,5 +101,24 @@ public class MaintenanceManager implements MaintenanceService {
 
     public void checkIfCarRentedforMaintenance(Car car) {
         if (car.getState().equals(RENTED)) throw new RuntimeException("Araç şuan kirada");
+    }
+    public void sendMaintenance(Car car){
+        car.setState(MAINTANCE);
+        carService.update(car.getId(),mapper.map(car, UpdateCarRequest.class));
+
+    }
+    public void returnFromMaintenance(Car car){
+        car.setState(AVAILABLE);
+        carService.update(car.getId(),mapper.map(car, UpdateCarRequest.class));
+    }
+    public void checkIfMaintenanceAvailable(int id){
+        if (!repository.existsById(id)) throw new RuntimeException("Bakım bulunamadı");
+    }
+    public void checkIfCarIsAvailable(Car car){
+        if (car.getState().equals(AVAILABLE)) throw new RuntimeException("Araç zaten kiralanmaya hazır.");
+    }
+    public void checkIfAvailableForReturningFromMaintenance(Car car){
+        checkIfCarIsAvailable(car);
+        checkIfCarRentedforMaintenance(car);
     }
 }

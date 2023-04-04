@@ -17,33 +17,28 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/cars")
 public class CarController {
-    private final CarService carService;
+    private final CarService service;
 
     @GetMapping
-    public List<GetAllCarsResponse> getAll() {
-        return carService.getAll();
+    public List<GetAllCarsResponse> getAll(){
+        return service.getAll();
     }
-    @GetMapping("status/{status}")
-    public List<GetAllCarsResponse> getAllByState(@PathVariable("status") Boolean filter)
-    {
-        return carService.getAllByState(filter);
-    }
-    @GetMapping("{id}")
-    public GetCarResponse getById(@PathVariable int id) {
-        return carService.getById(id);
+    @GetMapping("/{id}")
+    public GetCarResponse getById(@PathVariable int id){
+        return service.getById(id);
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateCarResponse add(@RequestBody CreateCarRequest request) {
-        return carService.add(request);
+    public CreateCarResponse add(@RequestBody CreateCarRequest request){
+        return service.add(request);
     }
-    @PutMapping("{id}")
-    public UpdateCarResponse update(@PathVariable int id,@RequestBody UpdateCarRequest request) {
-        return carService.update(id,request);
+    @PutMapping("/{id}")
+    public UpdateCarResponse update(@PathVariable int id, @RequestBody UpdateCarRequest request){
+        return service.update(id,request);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable int id) {
-        carService.delete(id);
+    public void delete(@PathVariable int id){
+        service.delete(id);
     }
 }

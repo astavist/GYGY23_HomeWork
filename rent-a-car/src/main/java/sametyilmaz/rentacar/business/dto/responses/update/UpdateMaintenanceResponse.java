@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 public class UpdateMaintenanceResponse {
     private int id;
+    private int carId;
     private Date sendDate;
     private Date returnDate;
-    private int carId;
 }

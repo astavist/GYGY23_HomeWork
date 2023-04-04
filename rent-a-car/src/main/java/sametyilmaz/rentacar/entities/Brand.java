@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "brand") //burada isimlendirmeler snake_case
+@Table(name = "brands") //burada isimlendirmeler snake_case
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -20,6 +20,4 @@ public class GetAllCarsResponse {
     @Enumerated(EnumType.STRING)
     private State state;
     private int modelId;
-    private String modelName;
-    private String modelBrandName;
 }

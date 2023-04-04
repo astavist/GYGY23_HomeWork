@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 public class CreateMaintenanceResponse {
     private int id;
-    private Date sendDate;
     private int carId;
+    private Date sendDate;
+    private Date returnDate;
 }
