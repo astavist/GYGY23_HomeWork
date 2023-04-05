@@ -1,4 +1,4 @@
-package sametyilmaz.rentacar.business.dto.responses.get;
+package sametyilmaz.rentacar.business.dto.responses.get.car;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,7 +12,7 @@ import sametyilmaz.rentacar.entities.enums.State;
 @AllArgsConstructor
 @Getter
 @Setter
-public class GetCarResponse {
+public class GetAllCarsResponse {
     private int id;
     private int modelYear;
     private String plate;

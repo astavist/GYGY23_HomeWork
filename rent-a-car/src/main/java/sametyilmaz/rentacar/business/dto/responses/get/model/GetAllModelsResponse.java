@@ -1,16 +1,16 @@
-package sametyilmaz.rentacar.business.dto.responses.get;
+package sametyilmaz.rentacar.business.dto.responses.get.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class GetAllBrandsResponse {
+public class GetAllModelsResponse {
     private int id;
     private String name;
-
+    private int brandId;
 }

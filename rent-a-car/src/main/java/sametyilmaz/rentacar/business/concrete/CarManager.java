@@ -7,8 +7,8 @@ import sametyilmaz.rentacar.business.abstracts.CarService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateCarRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateCarRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateCarResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllCarsResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetCarResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.car.GetAllCarsResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.car.GetCarResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateCarResponse;
 import sametyilmaz.rentacar.entities.Car;
 import sametyilmaz.rentacar.entities.enums.State;
@@ -86,6 +86,6 @@ public class CarManager implements CarService {
     }
     @Override
     public void checkIfCarExists(int id) {
-        if (!carRepository.existsById(id)) throw new RuntimeException("Marka bulunamadı");
+        if (!carRepository.existsById(id)) throw new RuntimeException("Araç bulunamadı");
     }
 }

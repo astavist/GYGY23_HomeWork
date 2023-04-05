@@ -112,7 +112,7 @@ public class MaintenanceManager implements MaintenanceService {
         carService.update(car.getId(),mapper.map(car, UpdateCarRequest.class));
     }
     public void checkIfMaintenanceAvailable(int id){
-        if (!repository.existsById(id)) throw new RuntimeException("Bakım bulunamadı");
+        if (!repository.existsById(id)) throw new RuntimeException("Bakım kaydı bulunamadı");
     }
     public void checkIfCarIsAvailable(Car car){
         if (car.getState().equals(AVAILABLE)) throw new RuntimeException("Araç zaten kiralanmaya hazır.");

@@ -1,4 +1,4 @@
-package sametyilmaz.rentacar.business.dto.responses.get;
+package sametyilmaz.rentacar.business.dto.responses.get.brand;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetBrandResponse {
+public class GetAllBrandsResponse {
     private int id;
     private String name;
-}
 
+}

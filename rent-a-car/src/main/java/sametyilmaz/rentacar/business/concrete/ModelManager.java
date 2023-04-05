@@ -7,8 +7,8 @@ import sametyilmaz.rentacar.business.abstracts.ModelService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateModelRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateModelRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateModelResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllModelsResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetModelResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.model.GetAllModelsResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.model.GetModelResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateModelResponse;
 import sametyilmaz.rentacar.entities.Model;
 import sametyilmaz.rentacar.repository.ModelRepository;
@@ -59,6 +59,6 @@ public class ModelManager implements ModelService {
     }
 
     public void checkIfModelExists(int id) {
-        if (!modelRepository.existsById(id)) throw new RuntimeException("Marka bulunamadı");
+        if (!modelRepository.existsById(id)) throw new RuntimeException("Model bulunamadı");
     }
 }
