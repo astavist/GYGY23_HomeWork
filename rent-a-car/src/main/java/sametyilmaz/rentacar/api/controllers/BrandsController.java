@@ -19,6 +19,8 @@ import java.util.List;
 public class BrandsController {
     private final BrandService service;
 
+
+
     @GetMapping
     public List<GetAllBrandsResponse> getAll(){
         return service.getAll();
