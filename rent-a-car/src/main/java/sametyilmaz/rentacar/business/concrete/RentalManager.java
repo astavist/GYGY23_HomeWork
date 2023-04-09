@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sametyilmaz.rentacar.business.abstracts.CarService;
+import sametyilmaz.rentacar.business.abstracts.PaymentService;
 import sametyilmaz.rentacar.business.abstracts.RentalService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateRentalRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateRentalRequest;
@@ -11,6 +12,7 @@ import sametyilmaz.rentacar.business.dto.responses.create.CreateRentalResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.rental.GetAllRentalsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.rental.GetRentalResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateRentalResponse;
+import sametyilmaz.rentacar.common.dto.CreateRentalPaymentRequest;
 import sametyilmaz.rentacar.entities.Rental;
 import sametyilmaz.rentacar.entities.enums.State;
 import sametyilmaz.rentacar.repository.RentalRepository;
@@ -24,6 +26,7 @@ public class RentalManager implements RentalService {
     private final RentalRepository repository;
     private final ModelMapper mapper;
     private final CarService carService;
+    private final PaymentService paymentService;
 
     @Override
     public List<GetAllRentalsResponse> getAll() {
@@ -52,6 +55,12 @@ public class RentalManager implements RentalService {
         rental.setId(0);
         rental.setTotalPrice(getTotalPrice(rental));
         rental.setStartDate(LocalDateTime.now());
+
+        CreateRentalPaymentRequest paymentRequest = new CreateRentalPaymentRequest();
+        mapper.map(request.getPaymentRequest(),paymentRequest);
+        paymentRequest.setPrice(getTotalPrice(rental));
+        paymentService.processRentalPayment(paymentRequest);
+
         repository.save(rental);
         carService.changeState(rental.getCar().getId(), State.RENTED);
         CreateRentalResponse response = mapper.map(rental, CreateRentalResponse.class);
