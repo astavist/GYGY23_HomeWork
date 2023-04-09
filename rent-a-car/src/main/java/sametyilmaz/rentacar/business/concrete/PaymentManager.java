@@ -40,7 +40,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public CreatePaymentResponse add(CreatePaymentRequest request) {
-        checkIfCardExists(request.getCardNumber());
+        checkIfCardExists(request.getCardNumber()); //kart var mı yok mu
         Payment payment = mapper.map(request,Payment.class);
         payment.setId(0);
         repository.save(payment);
@@ -50,7 +50,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public UpdatePaymentResponse update(int id, UpdatePaymentRequest request) {
-        checkIfPaymentExists(id);
+        checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
         Payment payment = mapper.map(request,Payment.class);
         payment.setId(id);
         repository.save(payment);
@@ -60,7 +60,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public void delete(int id) {
-        checkIfPaymentExists(id);
+        checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
         repository.deleteById(id);
     }
 
@@ -69,7 +69,7 @@ public class PaymentManager implements PaymentService {
         checkIfPaymentValid(request);
         Payment payment = repository.findByCardNumber(request.getCardNumber());
         checkIfBalanceIsEnough(payment.getBalance(),request.getPrice());
-        posService.pay();
+        posService.pay(); //fakepos
         payment.setBalance(payment.getBalance()-request.getPrice());
         repository.save(payment);
     }
