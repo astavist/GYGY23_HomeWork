@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateRentalPaymentRequest {
+//    genel kullanım
     private String cardNumber;
     private String cardHolder;
     private int cardExpirationYear;

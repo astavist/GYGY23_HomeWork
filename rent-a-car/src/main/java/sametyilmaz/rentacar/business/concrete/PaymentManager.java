@@ -74,6 +74,8 @@ public class PaymentManager implements PaymentService {
         repository.save(payment);
     }
 
+    //iş kuralları
+
     private void checkIfPaymentExists(int id) {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Ödeme bilgisi bulunamadı");
