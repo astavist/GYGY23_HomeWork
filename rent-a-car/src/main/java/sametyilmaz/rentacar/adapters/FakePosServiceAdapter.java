@@ -7,6 +7,7 @@ import java.util.Random;
 
 @Service
 public class FakePosServiceAdapter implements PosService {
+//    3dsecure ödeme servisini taklit eden program
     @Override
     public void pay() {
         boolean isPaymentSuccessful = new Random().nextBoolean();
