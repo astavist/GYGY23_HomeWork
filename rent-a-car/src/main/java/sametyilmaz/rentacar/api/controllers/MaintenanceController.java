@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import sametyilmaz.rentacar.business.abstracts.MaintenanceService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateMaintenanceRequest;
 import sametyilmaz.rentacar.business.dto.requests.update.UpdateMaintenanceRequest;
-import sametyilmaz.rentacar.business.dto.requests.update.UpdateMaintenanceStatusForCarRequest;
 import sametyilmaz.rentacar.business.dto.responses.create.CreateMaintenanceResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetAllMaintenancesResponse;
-import sametyilmaz.rentacar.business.dto.responses.get.GetMaintenanceResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.maintenance.GetAllMaintenancesResponse;
+import sametyilmaz.rentacar.business.dto.responses.get.maintenance.GetMaintenanceResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateMaintenanceResponse;
-import sametyilmaz.rentacar.business.dto.responses.update.UpdateMaintenanceStatusForCarResponse;
 
 import java.util.List;
 
@@ -19,31 +17,37 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/maintenance")
 public class MaintenanceController {
-    private final MaintenanceService maintenanceService;
+    private final MaintenanceService service;
+
     @GetMapping
-    public List<GetAllMaintenancesResponse> getAllMaintenancesResponses(){
-        return maintenanceService.getAll();
+    public List<GetAllMaintenancesResponse> getAll() {
+        return service.getAll();
     }
+
     @GetMapping("/{id}")
-    public GetMaintenanceResponse getById(@PathVariable int id){
-        return maintenanceService.getById(id);
+    public GetMaintenanceResponse getById(@PathVariable int id) {
+        return service.getById(id);
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateMaintenanceResponse add(@RequestBody CreateMaintenanceRequest request){
-        return maintenanceService.add(request);
+    public CreateMaintenanceResponse add(@RequestBody CreateMaintenanceRequest request) {
+        return service.add(request);
     }
-    @PutMapping("/{id}")
-    public UpdateMaintenanceResponse update(@PathVariable int id, @RequestBody UpdateMaintenanceRequest request){
-        return maintenanceService.update(id,request);
-    }
-    @PutMapping("/status/{id}")
-    public UpdateMaintenanceStatusForCarResponse updateStatus(@PathVariable int id, @RequestBody UpdateMaintenanceStatusForCarRequest request){
-        return maintenanceService.returnFromMaintenance(id,request);
 
+    @PutMapping("/return")
+    public GetMaintenanceResponse returnCarFromMaintenance(@RequestParam int carId) {
+        return service.returnCarFromMaintenance(carId);
     }
-    @DeleteMapping
-    public void delete(@PathVariable int id){
-        maintenanceService.delete(id);
+
+    @PutMapping("/{id}")
+    public UpdateMaintenanceResponse update(@PathVariable int id, @RequestBody UpdateMaintenanceRequest request) {
+        return service.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
     }
 }

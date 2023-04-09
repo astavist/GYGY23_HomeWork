@@ -8,20 +8,19 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Table(name = "maintenances")
-public class Maintenance {
+public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String information;
-    private boolean isCompleted;
+    private double dailyPrice;
+    private int rentedForDays;
+    private double totalPrice; // readonly
     private LocalDateTime startDate;
-    private LocalDateTime endDate;
 
     @ManyToOne
     @JoinColumn(name = "car_id")

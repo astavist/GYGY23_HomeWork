@@ -16,76 +16,78 @@ import sametyilmaz.rentacar.repository.CarRepository;
 
 import java.util.List;
 
-import static sametyilmaz.rentacar.entities.enums.State.*;
-
 @AllArgsConstructor
 @Service
 public class CarManager implements CarService {
-    private final CarRepository carRepository;
+    private final CarRepository repository;
     private final ModelMapper mapper;
 
     @Override
-    public List<GetAllCarsResponse> getAllByState(Boolean filter) {
-        List<Car> cars = carRepository.findAll();
-        List<GetAllCarsResponse> responses;
-        if (filter == false)
-        {
-            responses = cars.stream().map(car -> mapper.map(car, GetAllCarsResponse.class)).toList();
-        }
-        else {
-            responses = cars.stream().filter(car -> car.getState().toString() == AVAILABLE.name())
-                    .map(car -> mapper.map(car, GetAllCarsResponse.class)).toList();
-        }
-        return responses;
-    }
+    public List<GetAllCarsResponse> getAll(boolean includeMaintenance) {
+        List<Car> cars = filterCarsByMaintenanceState(includeMaintenance);
+        List<GetAllCarsResponse> response = cars
+                .stream()
+                .map(car -> mapper.map(car, GetAllCarsResponse.class))
+                .toList();
 
-    @Override
-    public List<GetAllCarsResponse> getAll() {
-        List<Car> cars = carRepository.findAll();
-        List<GetAllCarsResponse> responses = cars.stream()
-                .map(car -> mapper.map(car,GetAllCarsResponse.class)).toList();
-        return responses;
+        return response;
     }
 
     @Override
     public GetCarResponse getById(int id) {
         checkIfCarExists(id);
-        return mapper.map(carRepository.findById(id).orElseThrow(), GetCarResponse.class);
+        Car car = repository.findById(id).orElseThrow();
+        GetCarResponse response = mapper.map(car, GetCarResponse.class);
+
+        return response;
     }
 
     @Override
     public CreateCarResponse add(CreateCarRequest request) {
-        Car car = mapper.map(request,Car.class);
+        Car car = mapper.map(request, Car.class);
         car.setId(0);
-        carRepository.save(car);
-        return mapper.map(car,CreateCarResponse.class);
+        car.setState(State.AVAILABLE);
+        repository.save(car);
+        CreateCarResponse response = mapper.map(car, CreateCarResponse.class);
+
+        return response;
     }
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest request) {
         checkIfCarExists(id);
-        Car car = mapper.map(request,Car.class);
+        Car car = mapper.map(request, Car.class);
         car.setId(id);
-        carRepository.save(car);
-        return mapper.map(car,UpdateCarResponse.class);
-    }
+        repository.save(car);
+        UpdateCarResponse response = mapper.map(car, UpdateCarResponse.class);
 
-    @Override
-    public void carMaintenance(int id, State state) {
-        Car car = carRepository.findById(id).orElseThrow();
-        car.setState(state);
-        carRepository.save(car);
+        return response;
     }
-
 
     @Override
     public void delete(int id) {
         checkIfCarExists(id);
-        carRepository.deleteById(id);
-
+        repository.deleteById(id);
     }
+
     @Override
-    public void checkIfCarExists(int id) {
-        if (!carRepository.existsById(id)) throw new RuntimeException("Araç bulunamadı");
+    public void changeState(int carId, State state) {
+        Car car = repository.findById(carId).orElseThrow();
+        car.setState(state);
+        repository.save(car);
+    }
+
+    private void checkIfCarExists(int id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Böyle bir araç bulunamadı!");
+        }
+    }
+
+    private List<Car> filterCarsByMaintenanceState(boolean includeMaintenance) {
+        if (includeMaintenance) {
+            return repository.findAll();
+        }
+
+        return repository.findAllByStateIsNot(State.MAINTENANCE);
     }
 }

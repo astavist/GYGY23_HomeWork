@@ -5,10 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
-public class UpdateMaintenanceStatusForCarRequest {
+@AllArgsConstructor
+@NoArgsConstructor
+public class UpdateRentalRequest {
     private int carId;
+    private double dailyPrice;
+    private int rentedForDays;
+    private LocalDateTime startDate;
 }
