@@ -22,7 +22,6 @@ public class Maintenance {
     private boolean isCompleted;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
