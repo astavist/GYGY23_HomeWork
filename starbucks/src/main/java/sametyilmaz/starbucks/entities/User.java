@@ -27,6 +27,6 @@ public class User {
 
     private String nationalId;
 
-    private Date birthDate;
+    private String birthDate;
 
 }
