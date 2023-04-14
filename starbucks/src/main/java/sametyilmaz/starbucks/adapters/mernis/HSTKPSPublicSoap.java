@@ -13,12 +13,8 @@ package sametyilmaz.starbucks.adapters.mernis;
 
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.serialization.*;
-import org.ksoap2.transport.*;
-import org.kxml2.kdom.Element;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -140,7 +136,7 @@ public class HSTKPSPublicSoap
     
     
     
-    public Boolean TCKimlikNoDogrula(final Long TCKimlikNo,final String Ad,final String Soyad,final Integer DogumYili) throws java.lang.Exception
+    public Boolean TCKimlikNoDogrula(final Long TCKimlikNo, final String Ad, final String Soyad, final Integer DogumYili) throws java.lang.Exception
     {
         com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile __profile = new com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile();
         return (Boolean)execute(new HSTIWcfMethod()
