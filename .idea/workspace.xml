@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="rent-a-car">
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="düzen">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,8 +48,13 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "C:/Users/SAMET/Desktop/GYGYOdev/starbucks",
+    "last_opened_file_path": "C:/Users/SAMET/Desktop/GYGYOdev/rent-a-car",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "spring.configuration.checksum": "10b4983dac8c24f5e74de11225453331",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,6 +115,9 @@
       <option name="presentableId" value="Default" />
       <updated>1679066864290</updated>
       <workItem from="1681403238214" duration="79000" />
+      <workItem from="1681485576330" duration="178000" />
+      <workItem from="1681486247117" duration="645000" />
+      <workItem from="1681555064291" duration="28000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1679448627030</created>
@@ -171,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681403279559</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="düzen">
+      <created>1681485646458</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681485646458</updated>
+    </task>
+    <task id="LOCAL-00011" summary="düzen">
+      <created>1681485666784</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1681485666784</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +218,8 @@
     <MESSAGE value="test1" />
     <MESSAGE value="düzenleme" />
     <MESSAGE value="rent-a-car" />
-    <option name="LAST_COMMIT_MESSAGE" value="rent-a-car" />
+    <MESSAGE value="düzen" />
+    <option name="LAST_COMMIT_MESSAGE" value="düzen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

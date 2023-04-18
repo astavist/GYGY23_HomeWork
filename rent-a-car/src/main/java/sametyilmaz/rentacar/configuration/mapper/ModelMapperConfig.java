@@ -1,4 +1,4 @@
-package sametyilmaz.rentacar.business.configuration.mapper;
+package sametyilmaz.rentacar.configuration.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

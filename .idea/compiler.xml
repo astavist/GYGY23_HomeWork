@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="e-commerce" />
         <module name="rent-a-car" />
-        <module name="odevInjection" />
-        <module name="gameSale" />
-        <module name="deneme" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="deneme" target="19" />
+      <module name="gameSale" target="19" />
+      <module name="odevInjection" target="19" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
