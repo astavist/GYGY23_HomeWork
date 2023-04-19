@@ -70,9 +70,9 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public void processRentalPayment(CreateRentalPaymentRequest request) {
-        checkIfPaymentValid(request);
+        rules.checkIfPaymentIsValid(request);
         Payment payment = repository.findByCardNumber(request.getCardNumber());
-        checkIfBalanceIsEnough(payment.getBalance(),request.getPrice());
+        rules.checkIfBalanceIdEnough(payment.getBalance(),request.getPrice());
         posService.pay(); //fakepos
         payment.setBalance(payment.getBalance()-request.getPrice());
         repository.save(payment);
