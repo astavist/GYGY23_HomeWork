@@ -12,6 +12,7 @@ import sametyilmaz.rentacar.business.dto.responses.create.CreateRentalResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.rental.GetAllRentalsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.rental.GetRentalResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateRentalResponse;
+import sametyilmaz.rentacar.business.rules.RentalBusinessRules;
 import sametyilmaz.rentacar.common.dto.CreateRentalPaymentRequest;
 import sametyilmaz.rentacar.entities.Rental;
 import sametyilmaz.rentacar.entities.enums.State;
@@ -27,6 +28,7 @@ public class RentalManager implements RentalService {
     private final ModelMapper mapper;
     private final CarService carService;
     private final PaymentService paymentService;
+    private final RentalBusinessRules rules;
 
     @Override
     public List<GetAllRentalsResponse> getAll() {
@@ -41,7 +43,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public GetRentalResponse getById(int id) {
-        checkIfRentalExists(id);
+        rules.checkIfRentalExists(id);
         Rental rental = repository.findById(id).orElseThrow();
         GetRentalResponse response = mapper.map(rental,GetRentalResponse.class);
 
@@ -50,7 +52,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public CreateRentalResponse add(CreateRentalRequest request) {
-        checkIfCarAvailable(request.getCarId());
+        rules.checkIfCarAvailable(carService.getById(request.getCarId()).getState());
         Rental rental = mapper.map(request, Rental.class);
         rental.setId(0);
         rental.setTotalPrice(getTotalPrice(rental));
@@ -71,7 +73,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public UpdateRentalResponse update(int id, UpdateRentalRequest request) {
-        checkIfRentalExists(id);
+        rules.checkIfRentalExists(id);
         Rental rental = mapper.map(request, Rental.class);
         rental.setId(id);
         rental.setTotalPrice(getTotalPrice(rental));
@@ -83,7 +85,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public void delete(int id) {
-        checkIfRentalExists(id);
+        rules.checkIfRentalExists(id);
         int carId = repository.findById(id).get().getCar().getId();
         carService.changeState(carId, State.AVAILABLE);
         repository.deleteById(id);
@@ -91,17 +93,5 @@ public class RentalManager implements RentalService {
 
     private double getTotalPrice(Rental rental) {
         return rental.getDailyPrice() * rental.getRentedForDays();
-    }
-
-    private void checkIfRentalExists(int id){
-        if(!repository.existsById(id)){
-            throw new RuntimeException("Kiralama bilgisine ulaşılamadı!");
-        }
-    }
-
-    private void checkIfCarAvailable(int carId) {
-        if(!carService.getById(carId).getState().equals(State.AVAILABLE)){
-            throw new RuntimeException("Araç müsait değil!");
-        }
     }
 }

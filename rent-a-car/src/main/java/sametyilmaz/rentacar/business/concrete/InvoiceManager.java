@@ -10,6 +10,7 @@ import sametyilmaz.rentacar.business.dto.responses.create.CreateInvoiceResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.invoice.GetAllInvoicesResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.invoice.GetInvoiceResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateInvoiceResponse;
+import sametyilmaz.rentacar.business.rules.InvoiceBusinessRules;
 import sametyilmaz.rentacar.entities.Invoice;
 import sametyilmaz.rentacar.repository.InvoiceRepository;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class InvoiceManager implements InvoiceService {
     private final ModelMapper mapper;
     private final InvoiceRepository repository;
+    private final InvoiceBusinessRules rules;
 
     @Override
     public List<GetAllInvoicesResponse> getAll() {
@@ -31,6 +33,8 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public GetInvoiceResponse getById(int id) {
+        rules.checkIfInvoiceExists(id);
+
         Invoice invoice = repository.findById(id).orElseThrow();
         GetInvoiceResponse response = mapper.map(invoice,GetInvoiceResponse.class);
         return response;
@@ -47,6 +51,8 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public UpdateInvoiceResponse update(int id, UpdateInvoiceRequest request) {
+        rules.checkIfInvoiceExists(id);
+
         Invoice invoice = mapper.map(request,Invoice.class);
         invoice.setId(id);
         repository.save(invoice);
@@ -56,6 +62,8 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public void delete(int id) {
+        rules.checkIfInvoiceExists(id);
+
         repository.deleteById(id);
     }
 }

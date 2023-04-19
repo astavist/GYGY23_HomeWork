@@ -11,6 +11,7 @@ import sametyilmaz.rentacar.business.dto.responses.create.CreatePaymentResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.payment.GetAllPaymentsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.payment.GetPaymentResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdatePaymentResponse;
+import sametyilmaz.rentacar.business.rules.PaymentBusinessRules;
 import sametyilmaz.rentacar.common.dto.CreateRentalPaymentRequest;
 import sametyilmaz.rentacar.entities.Payment;
 import sametyilmaz.rentacar.repository.PaymentRepository;
@@ -23,6 +24,8 @@ public class PaymentManager implements PaymentService {
     private final PaymentRepository repository;
     private final ModelMapper mapper;
     private final PosService posService;
+    private final PaymentBusinessRules rules;
+
     @Override
     public List<GetAllPaymentsResponse> getAll() {
         List<Payment> payments = repository.findAll();
@@ -33,6 +36,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public GetPaymentResponse getById(int id) {
+        rules.checkIfPaymentExists(id);
         Payment payment = repository.findById(id).orElseThrow();
         GetPaymentResponse response = mapper.map(payment,GetPaymentResponse.class);
         return response;
@@ -40,7 +44,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public CreatePaymentResponse add(CreatePaymentRequest request) {
-        checkIfCardExists(request.getCardNumber()); //kart var mı yok mu
+        rules.checkIfCardExists(request.getCardNumber()); //kart var mı yok mu
         Payment payment = mapper.map(request,Payment.class);
         payment.setId(0);
         repository.save(payment);
@@ -50,7 +54,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public UpdatePaymentResponse update(int id, UpdatePaymentRequest request) {
-        checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
+        rules.checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
         Payment payment = mapper.map(request,Payment.class);
         payment.setId(id);
         repository.save(payment);
@@ -60,7 +64,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public void delete(int id) {
-        checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
+        rules.checkIfPaymentExists(id); //ödeme bilgisi var mı yok mu
         repository.deleteById(id);
     }
 
@@ -72,37 +76,5 @@ public class PaymentManager implements PaymentService {
         posService.pay(); //fakepos
         payment.setBalance(payment.getBalance()-request.getPrice());
         repository.save(payment);
-    }
-
-    //iş kuralları
-
-    private void checkIfPaymentExists(int id) {
-        if (!repository.existsById(id)) {
-            throw new RuntimeException("Ödeme bilgisi bulunamadı");
-        }
-    }
-
-    private void checkIfBalanceIsEnough(double balance,double price) {
-        if (balance < price) {
-            throw new RuntimeException("Yetersiz Bakiye");
-        }
-    }
-
-    private void checkIfCardExists(String cardNumber) {
-        if (repository.existsByCardNumber(cardNumber)) {
-            throw new RuntimeException("Kart Numarası Zaten Kayıtlı");
-        }
-    }
-
-    private void checkIfPaymentValid(CreateRentalPaymentRequest request) {
-        if (!repository.existsByCardNumberAndCardHolderAndCardExpirationYearAndCardExpirationMonthAndCardCvv(
-                request.getCardNumber(),
-                request.getCardHolder(),
-                request.getCardExpirationYear(),
-                request.getCardExpirationMonth(),
-                request.getCardCvv()
-        )) {
-            throw new RuntimeException("Kart Bilgileri Hatalı");
-        }
     }
 }

@@ -10,6 +10,7 @@ import sametyilmaz.rentacar.business.dto.responses.create.CreateModelResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.model.GetAllModelsResponse;
 import sametyilmaz.rentacar.business.dto.responses.get.model.GetModelResponse;
 import sametyilmaz.rentacar.business.dto.responses.update.UpdateModelResponse;
+import sametyilmaz.rentacar.business.rules.ModelBusinessRules;
 import sametyilmaz.rentacar.entities.Model;
 import sametyilmaz.rentacar.repository.ModelRepository;
 
@@ -18,47 +19,49 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class ModelManager implements ModelService {
-    private ModelRepository modelRepository;
-    private ModelMapper mapper;
+    private final ModelRepository repository;
+    private final ModelMapper mapper;
+    private final ModelBusinessRules rules;
 
     @Override
     public List<GetAllModelsResponse> getAll() {
-        List<GetAllModelsResponse> response = modelRepository.findAll().stream()
+        List<Model> models = repository.findAll();
+        List<GetAllModelsResponse> response = models.stream()
                 .map(model -> mapper.map(model, GetAllModelsResponse.class)).toList();
         return response;
     }
 
     @Override
     public GetModelResponse getById(int id) {
-        checkIfModelExists(id);
-        return mapper.map(modelRepository.findById(id),GetModelResponse.class);
+        rules.checkIfModelExists(id);
+
+        return mapper.map(repository.findById(id),GetModelResponse.class);
     }
 
     @Override
     public CreateModelResponse add(CreateModelRequest request) {
         Model model = mapper.map(request, Model.class);
         model.setId(0);
-        modelRepository.save(model);
+        repository.save(model);
         return mapper.map(model,CreateModelResponse.class);
     }
 
     @Override
     public UpdateModelResponse update(int id, UpdateModelRequest request) {
-        checkIfModelExists(id);
+        rules.checkIfModelExists(id);
+
         Model model = mapper.map(request,Model.class);
         model.setId(id);
-        modelRepository.save(model);
-        return mapper.map(model,UpdateModelResponse.class);
+        repository.save(model);
+
+        UpdateModelResponse response = mapper.map(model,UpdateModelResponse.class);
+        return response;
     }
 
     @Override
     public void delete(int id) {
-        checkIfModelExists(id);
-        modelRepository.deleteById(id);
+        rules.checkIfModelExists(id);
 
-    }
-
-    public void checkIfModelExists(int id) {
-        if (!modelRepository.existsById(id)) throw new RuntimeException("Model bulunamadı");
+        repository.deleteById(id);
     }
 }
