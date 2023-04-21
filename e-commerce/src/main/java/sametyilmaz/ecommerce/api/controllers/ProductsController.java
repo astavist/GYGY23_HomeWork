@@ -2,6 +2,12 @@ package sametyilmaz.ecommerce.api.controllers;
 
 import lombok.AllArgsConstructor;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
+import sametyilmaz.ecommerce.business.dto.requests.CreateProductRequest;
+import sametyilmaz.ecommerce.business.dto.requests.UpdateProductRequest;
+import sametyilmaz.ecommerce.business.dto.responses.CreateProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetAllProductsResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.UpdateProductResponse;
 import sametyilmaz.ecommerce.entities.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,24 +23,24 @@ public class ProductsController {
 //    mapping
 
     @GetMapping
-    public List<Product> getAll() {
+    public List<GetAllProductsResponse> getAll() {
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public Product getById(@PathVariable int id) {
+    public GetProductResponse getById(@PathVariable int id) {
         return service.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product add(Product product) {
-        return service.add(product);
+    public CreateProductResponse add(@RequestBody CreateProductRequest request) {
+        return service.add(request);
     }
 
     @PutMapping("/{id}")
-    public Product update(@PathVariable int id, Product product) {
-        return service.update(id, product);
+    public UpdateProductResponse update(@PathVariable int id,@RequestBody UpdateProductRequest request) {
+        return service.update(id, request);
     }
 
     @DeleteMapping("/{id}")

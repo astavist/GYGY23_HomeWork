@@ -1,28 +1,20 @@
-package sametyilmaz.ecommerce.entities;
+package sametyilmaz.ecommerce.business.dto.responses;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sametyilmaz.ecommerce.entities.enums.ProductEnums;
 
-import javax.swing.plaf.nimbus.State;
-
-@Getter
 @Setter
-@Entity
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-@Table(name = "Product")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+public class GetAllProductsResponse {
     private int id;
     private String name;
     private int quantity;
     private double price;
     private String description;
     private ProductEnums Status;
-
 }

@@ -1,12 +1,21 @@
 package sametyilmaz.ecommerce.business.concretes;
 
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
+import sametyilmaz.ecommerce.business.dto.requests.CreateProductRequest;
+import sametyilmaz.ecommerce.business.dto.requests.UpdateProductRequest;
+import sametyilmaz.ecommerce.business.dto.responses.CreateProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetAllProductsResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.UpdateProductResponse;
+import sametyilmaz.ecommerce.business.rules.ProductBusinessRules;
 import sametyilmaz.ecommerce.entities.Product;
 import sametyilmaz.ecommerce.repository.ProductRepository;
 
 
+import javax.sound.sampled.Port;
 import java.util.List;
 
 @Service
@@ -14,52 +23,56 @@ import java.util.List;
 public class ProductManager implements ProductService {
 
     private final ProductRepository repository;
+    private final ProductBusinessRules rules;
+    private final ModelMapper mapper;
 
-    @Override
-    public List<Product> getAll() {
-        return repository.findAll();
-    }
-
-    @Override
-    public Product getById(int id) {
-        return repository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public Product add(Product product) {
-        validateProduct(product);
-        return repository.save(product);
-    }
-
-    @Override
-    public Product update(int id, Product product) {
-        validateProduct(product);
-        product.setId(id);
-        return repository.save(product);
-    }
-
-    //    business kuralları
-    @Override
-    public void delete(int id) {
-        repository.deleteById(id);
-    }
 
     private void validateProduct(Product product) {
-        checkIfPriceValid(product);
-        checkIfQuantityValid(product);
-        checkIfDescriptionValid(product);
+        rules.checkIfPriceValid(product);
+        rules.checkIfQuantityValid(product);
+        rules.checkIfDescriptionValid(product);
     }
 
-    private void checkIfPriceValid(Product product) {
-        if (product.getPrice() <= 0) throw new IllegalArgumentException("Price can't be zero or negative");
+    @Override
+    public List<GetAllProductsResponse> getAll() {
+        List<Product> products = repository.findAll();
+        List<GetAllProductsResponse> response = products
+                .stream().map(product -> mapper.map(product,GetAllProductsResponse.class)).toList();
+        return response;
     }
 
-    private void checkIfQuantityValid(Product product) {
-        if (product.getQuantity() <= 0) throw new IllegalArgumentException("Quantity can't be zero or negative");
+    @Override
+    public GetProductResponse getById(int id) {
+        rules.checkIfProductExists(id);
+        Product product = repository.findById(id).orElseThrow();
+        GetProductResponse response = mapper.map(product,GetProductResponse.class);
+        return response;
     }
 
-    private void checkIfDescriptionValid(Product product) {
-        if (product.getDescription().length() < 10 || product.getDescription().length() > 50)
-            throw new IllegalArgumentException("Description can't be less than 10 or more than 50");
+    @Override
+    public CreateProductResponse add(CreateProductRequest request) {
+        Product product = mapper.map(request,Product.class);
+        product.setId(0);
+        validateProduct(product);
+        repository.save(product);
+        CreateProductResponse response = mapper.map(product,CreateProductResponse.class);
+        return response;
+    }
+
+    @Override
+    public UpdateProductResponse update(int id, UpdateProductRequest request) {
+        rules.checkIfProductExists(id);
+        Product product = mapper.map(request,Product.class);
+        validateProduct(product);
+        product.setId(id);
+        repository.save(product);
+        UpdateProductResponse response = mapper.map(product,UpdateProductResponse.class);
+        return response;
+    }
+
+    @Override
+    public void delete(int id) {
+        rules.checkIfProductExists(id);
+        repository.deleteById(id);
     }
 }

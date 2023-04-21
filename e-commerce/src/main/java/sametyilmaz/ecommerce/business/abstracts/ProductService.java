@@ -1,17 +1,23 @@
 package sametyilmaz.ecommerce.business.abstracts;
 
+import sametyilmaz.ecommerce.business.dto.requests.CreateProductRequest;
+import sametyilmaz.ecommerce.business.dto.requests.UpdateProductRequest;
+import sametyilmaz.ecommerce.business.dto.responses.CreateProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetAllProductsResponse;
+import sametyilmaz.ecommerce.business.dto.responses.GetProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.UpdateProductResponse;
 import sametyilmaz.ecommerce.entities.Product;
 
 import java.util.List;
 
 public interface ProductService {
-    List<Product> getAll();
+    List<GetAllProductsResponse> getAll();
 
-    Product getById(int id);
+    GetProductResponse getById(int id);
 
-    Product add(Product product);
+    CreateProductResponse add(CreateProductRequest request);
 
-    Product update(int id, Product product);
+    UpdateProductResponse update(int id, UpdateProductRequest request);
 
     void delete(int id);
 }
