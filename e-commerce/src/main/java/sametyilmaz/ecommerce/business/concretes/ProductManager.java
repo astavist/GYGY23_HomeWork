@@ -4,18 +4,19 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
-import sametyilmaz.ecommerce.business.dto.requests.CreateProductRequest;
-import sametyilmaz.ecommerce.business.dto.requests.UpdateProductRequest;
-import sametyilmaz.ecommerce.business.dto.responses.CreateProductResponse;
-import sametyilmaz.ecommerce.business.dto.responses.GetAllProductsResponse;
-import sametyilmaz.ecommerce.business.dto.responses.GetProductResponse;
-import sametyilmaz.ecommerce.business.dto.responses.UpdateProductResponse;
+import sametyilmaz.ecommerce.business.dto.requests.create.CreateProductRequest;
+import sametyilmaz.ecommerce.business.dto.requests.update.UpdateProductRequest;
+import sametyilmaz.ecommerce.business.dto.responses.*;
+import sametyilmaz.ecommerce.business.dto.responses.create.CreateProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.get.GetAllProductsResponse;
+import sametyilmaz.ecommerce.business.dto.responses.get.GetProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.update.UpdateProductResponse;
 import sametyilmaz.ecommerce.business.rules.ProductBusinessRules;
 import sametyilmaz.ecommerce.entities.Product;
+import sametyilmaz.ecommerce.entities.enums.ProductEnums;
 import sametyilmaz.ecommerce.repository.ProductRepository;
 
 
-import javax.sound.sampled.Port;
 import java.util.List;
 
 @Service
@@ -34,39 +35,62 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public List<GetAllProductsResponse> getAll() {
-        List<Product> products = repository.findAll();
-        List<GetAllProductsResponse> response = products
-                .stream().map(product -> mapper.map(product,GetAllProductsResponse.class)).toList();
-        return response;
+    public List<GetAllProductsResponse> getAll(Boolean choice) {
+        if (choice) {
+            List<Product> products = repository.findAll();
+            List<GetAllProductsResponse> response = products
+                    .stream().map(product -> mapper.map(product, GetAllProductsResponse.class)).toList();
+            return response;
+        }
+        else {
+            List<Product> products = repository.findAll().stream().filter(product -> product.getStatus().toString().equals("ACTIVE")).toList();
+            List<GetAllProductsResponse> response = products
+                    .stream().map(product -> mapper.map(product, GetAllProductsResponse.class)).toList();
+            return response;
+        }
     }
 
     @Override
     public GetProductResponse getById(int id) {
         rules.checkIfProductExists(id);
         Product product = repository.findById(id).orElseThrow();
-        GetProductResponse response = mapper.map(product,GetProductResponse.class);
+        GetProductResponse response = mapper.map(product, GetProductResponse.class);
         return response;
     }
 
     @Override
     public CreateProductResponse add(CreateProductRequest request) {
-        Product product = mapper.map(request,Product.class);
+        Product product = mapper.map(request, Product.class);
         product.setId(0);
         validateProduct(product);
         repository.save(product);
-        CreateProductResponse response = mapper.map(product,CreateProductResponse.class);
+        CreateProductResponse response = mapper.map(product, CreateProductResponse.class);
         return response;
     }
 
     @Override
     public UpdateProductResponse update(int id, UpdateProductRequest request) {
         rules.checkIfProductExists(id);
-        Product product = mapper.map(request,Product.class);
+        Product product = mapper.map(request, Product.class);
         validateProduct(product);
         product.setId(id);
         repository.save(product);
-        UpdateProductResponse response = mapper.map(product,UpdateProductResponse.class);
+        UpdateProductResponse response = mapper.map(product, UpdateProductResponse.class);
+        return response;
+    }
+
+    @Override
+    public StatusProductResponse statusChanger(int id) {
+        rules.checkIfProductExists(id);
+        Product product = mapper.map(repository.findById(id), Product.class);
+        if (product.getStatus().toString().equals("ACTIVE")) {
+            product.setStatus(ProductEnums.PASSIVE);
+        } else {
+            product.setStatus(ProductEnums.ACTIVE);
+        }
+        product.setId(id);
+        repository.save(product);
+        StatusProductResponse response = mapper.map(product, StatusProductResponse.class);
         return response;
     }
 

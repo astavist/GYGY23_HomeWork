@@ -1,4 +1,4 @@
-package sametyilmaz.ecommerce.business.dto.responses;
+package sametyilmaz.ecommerce.business.dto.responses.get;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

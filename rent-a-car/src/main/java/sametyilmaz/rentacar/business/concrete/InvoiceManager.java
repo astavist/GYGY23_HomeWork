@@ -26,7 +26,7 @@ public class InvoiceManager implements InvoiceService {
     @Override
     public List<GetAllInvoicesResponse> getAll() {
         List<Invoice> invoices = repository.findAll();
-        List<GetAllInvoicesResponse> response = invowices
+        List<GetAllInvoicesResponse> response = invoices
                 .stream().map(invoice -> mapper.map(invoice, GetAllInvoicesResponse.class)).toList();
         return response;
     }

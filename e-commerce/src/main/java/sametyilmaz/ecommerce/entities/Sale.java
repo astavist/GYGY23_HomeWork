@@ -9,23 +9,18 @@ import sametyilmaz.ecommerce.entities.enums.ProductEnums;
 
 import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Product")
-public class Product {
+@Getter
+@Setter
+public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private int quantity;
-    private double price;
-    private String description;
-    @Enumerated(EnumType.STRING)
-    private ProductEnums Status;
-    @OneToMany
-    private List<Sale> sales;
-
+    private double totalPrice;
+    private String customerName;
+    private int saleQuantity;
+    @ManyToOne
+    private Product product;
 }

@@ -1,4 +1,4 @@
-package sametyilmaz.ecommerce.business.dto.responses;
+package sametyilmaz.ecommerce.business.dto.responses.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import sametyilmaz.ecommerce.entities.enums.ProductEnums;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateProductResponse {
+public class CreateProductResponse {
     private int id;
     private String name;
     private int quantity;

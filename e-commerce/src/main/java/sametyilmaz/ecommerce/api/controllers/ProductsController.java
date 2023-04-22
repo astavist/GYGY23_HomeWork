@@ -2,15 +2,15 @@ package sametyilmaz.ecommerce.api.controllers;
 
 import lombok.AllArgsConstructor;
 import sametyilmaz.ecommerce.business.abstracts.ProductService;
-import sametyilmaz.ecommerce.business.dto.requests.CreateProductRequest;
-import sametyilmaz.ecommerce.business.dto.requests.UpdateProductRequest;
-import sametyilmaz.ecommerce.business.dto.responses.CreateProductResponse;
-import sametyilmaz.ecommerce.business.dto.responses.GetAllProductsResponse;
-import sametyilmaz.ecommerce.business.dto.responses.GetProductResponse;
-import sametyilmaz.ecommerce.business.dto.responses.UpdateProductResponse;
-import sametyilmaz.ecommerce.entities.Product;
+import sametyilmaz.ecommerce.business.dto.requests.create.CreateProductRequest;
+import sametyilmaz.ecommerce.business.dto.requests.update.UpdateProductRequest;
+import sametyilmaz.ecommerce.business.dto.responses.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import sametyilmaz.ecommerce.business.dto.responses.create.CreateProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.get.GetAllProductsResponse;
+import sametyilmaz.ecommerce.business.dto.responses.get.GetProductResponse;
+import sametyilmaz.ecommerce.business.dto.responses.update.UpdateProductResponse;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public class ProductsController {
 //    mapping
 
     @GetMapping
-    public List<GetAllProductsResponse> getAll() {
-        return service.getAll();
+    public List<GetAllProductsResponse> getAll(Boolean choice) {
+        return service.getAll(choice);
     }
 
     @GetMapping("/{id}")
@@ -39,8 +39,13 @@ public class ProductsController {
     }
 
     @PutMapping("/{id}")
-    public UpdateProductResponse update(@PathVariable int id,@RequestBody UpdateProductRequest request) {
+    public UpdateProductResponse update(@PathVariable int id, @RequestBody UpdateProductRequest request) {
         return service.update(id, request);
+    }
+
+    @PutMapping("/changer/{id}")
+    public StatusProductResponse changer(@PathVariable int id) {
+        return service.statusChanger(id);
     }
 
     @DeleteMapping("/{id}")
