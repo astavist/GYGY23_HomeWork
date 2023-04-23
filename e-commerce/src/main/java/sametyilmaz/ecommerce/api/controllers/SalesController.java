@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import sametyilmaz.ecommerce.business.abstracts.SaleService;
 import sametyilmaz.ecommerce.business.dto.requests.create.CreateSaleRequest;
+import sametyilmaz.ecommerce.business.dto.requests.update.UpdatePaymentRequest;
+import sametyilmaz.ecommerce.business.dto.requests.update.UpdateSaleRequest;
 import sametyilmaz.ecommerce.business.dto.responses.create.CreateSaleResponse;
 import sametyilmaz.ecommerce.business.dto.responses.get.GetSaleResponse;
 import sametyilmaz.ecommerce.business.dto.responses.get.GetAllSalesResponse;
@@ -34,7 +36,7 @@ public class SalesController {
         return service.add(request);
     }
     @PutMapping("/{id}")
-    public UpdateSaleResponse update(@PathVariable int id,@RequestBody CreateSaleRequest request) {
+    public UpdateSaleResponse update(@PathVariable int id,@RequestBody UpdateSaleRequest request) {
         return service.update(id,request);
     }
 
