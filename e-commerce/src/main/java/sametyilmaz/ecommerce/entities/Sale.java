@@ -19,8 +19,11 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double totalPrice;
-    private String customerName;
+    private String paymentCustomerName;
     private int saleQuantity;
+
     @ManyToOne
     private Product product;
+    @OneToOne
+    private Payment payment;
 }

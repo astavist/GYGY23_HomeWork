@@ -17,7 +17,7 @@ public class ProductBusinessRules {
     }
 
     public void checkIfQuantityValid(Product product) {
-        if (product.getQuantity() <= 0) throw new IllegalArgumentException("Quantity can't be zero or negative");
+        if (product.getQuantity() < 0) throw new IllegalArgumentException("Quantity can't be negative");
     }
 
     public void checkIfDescriptionValid(Product product) {

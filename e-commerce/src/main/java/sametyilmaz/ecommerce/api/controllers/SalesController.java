@@ -7,7 +7,7 @@ import sametyilmaz.ecommerce.business.abstracts.SaleService;
 import sametyilmaz.ecommerce.business.dto.requests.create.CreateSaleRequest;
 import sametyilmaz.ecommerce.business.dto.responses.create.CreateSaleResponse;
 import sametyilmaz.ecommerce.business.dto.responses.get.GetSaleResponse;
-import sametyilmaz.ecommerce.business.dto.responses.get.GetlAllSalesResponse;
+import sametyilmaz.ecommerce.business.dto.responses.get.GetAllSalesResponse;
 import sametyilmaz.ecommerce.business.dto.responses.update.UpdateSaleResponse;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class SalesController {
     private SaleService service;
 
     @GetMapping
-    public List<GetlAllSalesResponse> getAll() {
+    public List<GetAllSalesResponse> getAll() {
         return service.getAll();
     }
 
