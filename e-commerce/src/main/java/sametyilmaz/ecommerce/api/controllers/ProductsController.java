@@ -19,12 +19,9 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductsController {
     private final ProductService service;
-
-//    mapping
-
     @GetMapping
-    public List<GetAllProductsResponse> getAll(@RequestParam(defaultValue = "true") boolean choice) {
-        return service.getAll(choice);
+    public List<GetAllProductsResponse> getAll() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
