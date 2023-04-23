@@ -12,5 +12,9 @@ import lombok.Setter;
 public class CreateSaleRequest {
     private int productId;
     private String customerName;
+    private String paymentCardNumber;
+    private String paymentCardExpirationYear;
+    private String paymentCardExpirationMonth;
+    private String paymentCardCvv;
     private int saleQuantity;
 }

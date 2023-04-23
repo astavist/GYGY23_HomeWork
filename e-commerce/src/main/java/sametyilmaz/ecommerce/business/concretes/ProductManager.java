@@ -35,19 +35,11 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public List<GetAllProductsResponse> getAll(Boolean choice) {
-        if (choice) {
-            List<Product> products = repository.findAll();
-            List<GetAllProductsResponse> response = products
-                    .stream().map(product -> mapper.map(product, GetAllProductsResponse.class)).toList();
+    public List<GetAllProductsResponse> getAll(boolean choice) {
+        List<Product> products = filterProductsByStatus(choice);
+        List<GetAllProductsResponse> response = products
+                .stream().map(product -> mapper.map(product, GetAllProductsResponse.class)).toList();
             return response;
-        }
-        else {
-            List<Product> products = repository.findAll().stream().filter(product -> product.getStatus().toString().equals("ACTIVE")).toList();
-            List<GetAllProductsResponse> response = products
-                    .stream().map(product -> mapper.map(product, GetAllProductsResponse.class)).toList();
-            return response;
-        }
     }
 
     @Override
@@ -98,5 +90,14 @@ public class ProductManager implements ProductService {
     public void delete(int id) {
         rules.checkIfProductExists(id);
         repository.deleteById(id);
+    }
+
+    public List<Product> filterProductsByStatus(boolean choice) {
+        if (choice) {
+            return repository.findAll();
+        }
+        else {
+            return repository.findProductByStatus(ProductEnums.ACTIVE);
+        }
     }
 }

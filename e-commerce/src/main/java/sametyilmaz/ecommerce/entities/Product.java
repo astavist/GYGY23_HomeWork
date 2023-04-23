@@ -25,7 +25,7 @@ public class Product {
     private String description;
     @Enumerated(EnumType.STRING)
     private ProductEnums Status;
-    @OneToMany(mappedBy = "product_id")
+    @OneToMany(mappedBy = "product")
     private List<Sale> sales;
 
 }

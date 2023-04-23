@@ -11,7 +11,7 @@ import sametyilmaz.ecommerce.business.dto.responses.update.UpdateProductResponse
 import java.util.List;
 
 public interface ProductService {
-    List<GetAllProductsResponse> getAll(Boolean choice);
+    List<GetAllProductsResponse> getAll(boolean choice);
 
     GetProductResponse getById(int id);
 

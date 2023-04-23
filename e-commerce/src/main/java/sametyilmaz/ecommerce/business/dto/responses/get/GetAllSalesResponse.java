@@ -12,6 +12,10 @@ import lombok.Setter;
 public class GetAllSalesResponse {
     private int id;
     private double totalPrice;
-    private String customerName;
+    private String paymentCustomerName;
+    private String paymentCardNumber;
+    private String paymentCardExpirationYear;
+    private String paymentCardExpirationMonth;
+    private String paymentCardCvv;
     private int saleQuantity;
 }

@@ -20,7 +20,6 @@ import java.util.List;
 @AllArgsConstructor
 public class PaymentManager implements PaymentService {
     private final ModelMapper mapper;
-    private final PaymentService service;
     private final PaymentRepository repository;
     @Override
     public List<GetAllPaymentResponse> getAll() {
@@ -40,6 +39,8 @@ public class PaymentManager implements PaymentService {
     @Override
     public CreatePaymentResponse add(CreatePaymentRequest request) {
         Payment payment = mapper.map(request,Payment.class);
+        payment.setId(0);
+        repository.save(payment);
         CreatePaymentResponse response = mapper.map(payment,CreatePaymentResponse.class);
         return response;
     }

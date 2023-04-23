@@ -23,7 +23,7 @@ public class ProductsController {
 //    mapping
 
     @GetMapping
-    public List<GetAllProductsResponse> getAll(Boolean choice) {
+    public List<GetAllProductsResponse> getAll(@RequestParam(defaultValue = "true") boolean choice) {
         return service.getAll(choice);
     }
 

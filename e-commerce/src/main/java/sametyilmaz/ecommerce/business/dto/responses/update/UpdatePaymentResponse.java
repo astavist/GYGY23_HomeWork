@@ -13,6 +13,8 @@ public class UpdatePaymentResponse {
     private int id;
     private String customerName;
     private String cardNumber;
-    private String cardCvv;
+    private int cardExpirationYear;
+    private int cardExpirationMonth;
+    private int cardCvv;
     private double cardBalance;
 }

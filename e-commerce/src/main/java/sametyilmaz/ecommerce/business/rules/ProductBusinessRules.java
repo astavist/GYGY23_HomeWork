@@ -3,12 +3,16 @@ package sametyilmaz.ecommerce.business.rules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import sametyilmaz.ecommerce.entities.Product;
+import sametyilmaz.ecommerce.entities.enums.ProductEnums;
 import sametyilmaz.ecommerce.repository.ProductRepository;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class ProductBusinessRules {
     private final ProductRepository repository;
+
     public void checkIfProductExists(int id) {
         if (!repository.existsById(id)) throw new RuntimeException("Ürün bulunamadı");
     }

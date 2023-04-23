@@ -20,6 +20,10 @@ public class Sale {
     private int id;
     private double totalPrice;
     private String paymentCustomerName;
+    private String paymentCardNumber;
+    private String cardExpirationYear;
+    private String cardExpirationMonth;
+    private String paymentCardCvv;
     private int saleQuantity;
 
     @ManyToOne
