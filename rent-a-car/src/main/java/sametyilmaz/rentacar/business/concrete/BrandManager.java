@@ -2,6 +2,8 @@ package sametyilmaz.rentacar.business.concrete;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import sametyilmaz.rentacar.business.abstracts.BrandService;
 import sametyilmaz.rentacar.business.dto.requests.create.CreateBrandRequest;
@@ -23,6 +25,7 @@ public class BrandManager implements BrandService {
     private final BrandBusinessRules rules;
 
     @Override
+    @Cacheable(value = "brand_list")
     public List<GetAllBrandsResponse> getAll() {
         List<Brand> brands = repository.findAll();
         List<GetAllBrandsResponse> response = brands
@@ -40,6 +43,7 @@ public class BrandManager implements BrandService {
     }
 
     @Override
+    @CacheEvict(value = "brand_list",allEntries = true)
     public CreateBrandResponse add(CreateBrandRequest request) {
 //        Brand brand = new Brand();
 //        brand.setName(request.getName());

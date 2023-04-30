@@ -11,6 +11,8 @@ import sametyilmaz.ecommerce.business.dto.responses.get.GetPaymentResponse;
 import sametyilmaz.ecommerce.business.dto.responses.get.GetAllPaymentResponse;
 import sametyilmaz.ecommerce.business.dto.responses.get.GetAllSalesResponse;
 import sametyilmaz.ecommerce.business.dto.responses.update.UpdatePaymentResponse;
+import sametyilmaz.ecommerce.business.rules.PaymentBusinessRules;
+import sametyilmaz.ecommerce.common.dto.CreateSalePaymentRequest;
 import sametyilmaz.ecommerce.entities.Payment;
 import sametyilmaz.ecommerce.repository.PaymentRepository;
 
@@ -20,6 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PaymentManager implements PaymentService {
     private final ModelMapper mapper;
+    private final PaymentBusinessRules rules;
     private final PaymentRepository repository;
     @Override
     public List<GetAllPaymentResponse> getAll() {
@@ -52,6 +55,13 @@ public class PaymentManager implements PaymentService {
         repository.save(payment);
         UpdatePaymentResponse response = mapper.map(payment,UpdatePaymentResponse.class);
         return response;
+    }
+
+    @Override
+    public void processRentalPayment(CreateSalePaymentRequest request) {
+        rules.checkIfPaymentIsValid(request);
+        Payment payment = repository.findByCardNumber(request.getCardNumber());
+        rules.checkIfBalanceIsEnough(request.getBalance(),);
     }
 
     @Override
