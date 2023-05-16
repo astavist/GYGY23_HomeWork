@@ -61,7 +61,6 @@ public class PaymentManager implements PaymentService {
     public void processRentalPayment(CreateSalePaymentRequest request) {
         rules.checkIfPaymentIsValid(request);
         Payment payment = repository.findByCardNumber(request.getCardNumber());
-        rules.checkIfBalanceIsEnough(request.getBalance(),);
     }
 
     @Override
