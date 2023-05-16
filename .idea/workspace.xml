@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="Added microservicesProject">
-      <change afterPath="$PROJECT_DIR$/gameSale/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/Campaign.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/Mernis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/SalePlace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameSale/src/main/java/org/gameSale/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/concretes/PaymentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/sametyilmaz/ecommerce/business/concretes/PaymentManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="dda341b8-b91a-4516-9a20-050174287156" name="Changes" comment="Changes PaymentManager" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,23 +36,23 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "C:/Users/SAMET/Desktop/GYGYOdev/microservices-t2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "spring.configuration.checksum": "10b4983dac8c24f5e74de11225453331",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SAMET/Desktop/GYGYOdev/microservices-t2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;10b4983dac8c24f5e74de11225453331&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.RentACarApplication">
     <configuration name="ECommerceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sametyilmaz.ecommerce.ECommerceApplication" />
@@ -130,6 +114,7 @@
       <workItem from="1681486247117" duration="645000" />
       <workItem from="1681555064291" duration="28000" />
       <workItem from="1684247457098" duration="175000" />
+      <workItem from="1684247650681" duration="174000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1679448627030</created>
@@ -215,7 +200,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684247535394</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="cleanup microservicesProject">
+      <created>1684247686875</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684247686875</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added gamesaleProject">
+      <created>1684247721903</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684247721903</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changes PaymentManager">
+      <created>1684247742109</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1684247742109</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +245,10 @@
     <MESSAGE value="rent-a-car" />
     <MESSAGE value="düzen" />
     <MESSAGE value="Added microservicesProject" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added microservicesProject" />
+    <MESSAGE value="cleanup microservicesProject" />
+    <MESSAGE value="Added gamesaleProject" />
+    <MESSAGE value="Changes PaymentManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes PaymentManager" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
